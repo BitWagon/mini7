@@ -1,8 +1,45 @@
 "use client";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { useState } from "react";
 
 export default function ContactPage() {
+  const [formStatus, setFormStatus] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      subject: form.subject.value,
+      message: form.message.value,
+    };
+
+    setFormStatus("Sending...");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+
+      if (res.ok) {
+        setFormStatus("Message sent successfully!");
+        form.reset();
+      } else {
+        setFormStatus("Failed to send message.");
+      }
+    } catch (error) {
+      setFormStatus("Error sending message.");
+      console.error(error);
+    }
+  };
+
   return (
     <main className="bg-[#dad7cd] text-gray-900">
       {/* Hero Section */}
@@ -10,7 +47,7 @@ export default function ContactPage() {
         className="relative h-[60vh] flex items-center justify-center text-center bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('https://images.pexels.com/photos/68704/pexels-photo-68704.jpeg?_gl=1*lxd09x*_ga*MTc4NzI1ODA4NC4xNzI1ODg5NTEy*_ga_8JE65Q40S6*czE3NTY3NTQzNjAkbzE5JGcxJHQxNzU2NzU2ODYwJGo1NSRsMCRoMA..')",
+            "url('https://images.pexels.com/photos/68704/pexels-photo-68704.jpeg')",
         }}
       >
         <div className="absolute inset-0 bg-black/50" />
@@ -28,6 +65,7 @@ export default function ContactPage() {
       <section className="py-16 max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-start">
         {/* Form */}
         <motion.form
+          onSubmit={handleSubmit}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -37,22 +75,30 @@ export default function ContactPage() {
           <div className="space-y-4">
             <input
               type="text"
+              name="name"
               placeholder="Your Name"
+              required
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#a3b18a]"
             />
             <input
               type="email"
+              name="email"
               placeholder="Your Email"
+              required
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#a3b18a]"
             />
             <input
               type="text"
+              name="subject"
               placeholder="Subject"
+              required
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#a3b18a]"
             />
             <textarea
               rows={5}
+              name="message"
               placeholder="Your Message"
+              required
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#a3b18a]"
             />
             <button
@@ -61,6 +107,7 @@ export default function ContactPage() {
             >
               Send Message
             </button>
+            <p className="text-sm text-green-600">{formStatus}</p>
           </div>
         </motion.form>
 
@@ -73,7 +120,7 @@ export default function ContactPage() {
         >
           <h2 className="text-3xl font-bold mb-4">Contact Information</h2>
           <p className="text-gray-700">
-            Reach out to us via email, phone, or visit our office in Faisalabad. We're happy to assist you with planning and bookings.
+            Reach out to us via email, phone, or visit our office in Faisalabad.
           </p>
 
           <div className="space-y-4 text-gray-800">
@@ -84,14 +131,13 @@ export default function ContactPage() {
               <Phone className="text-[#588157]" /> +92 300 1234567
             </div>
             <div className="flex items-center gap-3">
-              <MapPin className="text-[#588157]" /> 123 Main Boulevard, Faisalabad, Pakistan
+              <MapPin className="text-[#588157]" /> 123 Main Boulevard, Faisalabad
             </div>
           </div>
 
-          {/* Google Map for Faisalabad */}
           <iframe
             title="Faisalabad Office Location"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13602.770108302877!2d73.06635016675186!3d31.41831071760288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x392242f1e4d8a999%3A0x49d2ff0c0df02e99!2sFaisalabad%2C%20Punjab%2C%20Pakistan!5e0!3m2!1sen!2s!4v1693759000000!5m2!1sen!2s"
+            src="https://www.google.com/maps/embed?pb=..."
             width="100%"
             height="250"
             allowFullScreen
