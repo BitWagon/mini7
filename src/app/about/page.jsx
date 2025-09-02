@@ -134,7 +134,7 @@ export default function AboutPage() {
           Let’s Start Planning Your Next Journey
         </h2>
         <a
-          href="#contact"
+          href="contact"
           className="bg-black text-white px-6 py-3 rounded-full font-semibold hover:bg-[#212529] transition"
         >
           Contact Us

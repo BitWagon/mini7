@@ -21,7 +21,6 @@ export default function Footer() {
           <ul className="space-y-2">
             <li><a href="#home" className="hover:text-black">Home</a></li>
             <li><a href="#destinations" className="hover:text-black">Destinations</a></li>
-            <li><a href="#packages" className="hover:text-black">Packages</a></li>
             <li><a href="#about" className="hover:text-black">About Us</a></li>
             <li><a href="#contact" className="hover:text-black">Contact</a></li>
           </ul>
@@ -32,13 +31,13 @@ export default function Footer() {
           <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
           <ul className="space-y-3">
             <li className="flex items-center gap-2">
-              <Phone size={18} /> +92 300 1234567
+              <Phone size={18} /> +92 333 6516071
             </li>
             <li className="flex items-center gap-2">
-              <Mail size={18} /> info@travelagency.com
+              <Mail size={18} /> abrahamrandhawa@gmail.com
             </li>
             <li className="flex items-center gap-2">
-              <MapPin size={18} /> Lahore, Pakistan
+              <MapPin size={18} /> Faisalabad, Pakistan
             </li>
           </ul>
         </div>

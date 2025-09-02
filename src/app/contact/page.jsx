@@ -125,25 +125,26 @@ export default function ContactPage() {
 
           <div className="space-y-4 text-gray-800">
             <div className="flex items-center gap-3">
-              <Mail className="text-[#588157]" /> contact@travelagency.com
+              <Mail className="text-[#588157]" /> abrahamrandhawa@gmail.com
             </div>
             <div className="flex items-center gap-3">
-              <Phone className="text-[#588157]" /> +92 300 1234567
+              <Phone className="text-[#588157]" /> +92 333 6516071
             </div>
             <div className="flex items-center gap-3">
-              <MapPin className="text-[#588157]" /> 123 Main Boulevard, Faisalabad
+              <MapPin className="text-[#588157]" /> Faisalabad , Pakistan
             </div>
           </div>
 
           <iframe
-            title="Faisalabad Office Location"
-            src="https://www.google.com/maps/embed?pb=..."
-            width="100%"
-            height="250"
-            allowFullScreen
-            loading="lazy"
-            className="rounded-lg border border-gray-300 shadow-sm"
-          ></iframe>
+        title="Faisalabad Office Location"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3403.8128706228045!2d73.0873!3d31.4181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3922415d5c11e5f1%3A0x6dbf3c72!2sFaisalabad%2C%20Pakistan!5e0!3m2!1sen!2s!4v1699876543210!5m2!1sen!2s"
+        width="100%"
+        height="400"
+        allowFullScreen=""
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        className="w-full h-[400px] rounded-lg border border-gray-300 shadow-sm"
+      ></iframe>
         </motion.div>
       </section>
 

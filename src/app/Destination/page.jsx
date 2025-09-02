@@ -112,7 +112,7 @@ export default function TravelAgencyPage() {
                   ))}
                 </ul>
                 <a
-                  href="#book"
+                  href="contact"
                   className="block text-center bg-black text-white px-5 py-2 rounded-full font-semibold hover:bg-[#212529] transition"
                 >
                   Book Now
@@ -128,7 +128,7 @@ export default function TravelAgencyPage() {
         <h2 className="text-3xl md:text-4xl font-bold mb-6">Plan Your Dream Vacation Today</h2>
         <p className="mb-6">Exclusive offers available for early bookings. Don’t miss out!</p>
         <a
-          href="#contact"
+          href="contact"
           className="bg-black text-white px-6 py-3 rounded-full font-semibold hover:bg-[#212529] transition"
         >
           Contact Us
