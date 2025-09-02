@@ -1,6 +1,5 @@
-// src/app/api/contact/route.js
-
-import nodemailer from "nodemailer";
+import { connectDB } from "@/lib/db";
+import Contact from "@/models/Contact";
 
 export async function POST(request) {
   try {
@@ -14,33 +13,17 @@ export async function POST(request) {
       );
     }
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.MY_EMAIL,
-        pass: process.env.MY_EMAIL_PASSWORD,
-      },
-    });
-
-    await transporter.sendMail({
-      from: email,
-      to: process.env.MY_EMAIL,
-      subject: `Contact Form: ${subject || "No Subject"}`,
-      text: `
-        Name: ${name}
-        Email: ${email}
-        Message: ${message}
-      `,
-    });
+    await connectDB();
+    await Contact.create({ name, email, subject, message });
 
     return new Response(
-      JSON.stringify({ message: "Message sent successfully" }),
+      JSON.stringify({ message: "Message stored successfully ✅" }),
       { status: 200 }
     );
   } catch (error) {
-    console.error("Email error:", error);
+    console.error("DB error:", error);
     return new Response(
-      JSON.stringify({ message: "Failed to send email" }),
+      JSON.stringify({ message: "Failed to store message ❌" }),
       { status: 500 }
     );
   }
